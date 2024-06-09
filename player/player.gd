@@ -16,6 +16,7 @@ func updateAnimation():
 	if velocity.length() == 0:
 		if animations.is_playing():
 			animations.stop()
+			animations.seek(0.6,true)
 	else:
 		var direction = "Down"
 		match [velocity.x, velocity.y]:
