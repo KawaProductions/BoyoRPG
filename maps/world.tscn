@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://btu6x1g2e1ouc"]
+[gd_scene load_steps=11 format=3 uid="uid://btu6x1g2e1ouc"]
 
 [ext_resource type="PackedScene" uid="uid://b8y3gph323o0g" path="res://player/player.tscn" id="1_lvixr"]
 [ext_resource type="Texture2D" uid="uid://cp6od1ojc26hm" path="res://maps/TilesetFloor.png" id="1_vxlq8"]
 [ext_resource type="Texture2D" uid="uid://dg64kmsctnmck" path="res://maps/TilesetNature.png" id="2_r1512"]
 [ext_resource type="Texture2D" uid="uid://by0f17je0b0b8" path="res://maps/AnimatedFlower.png" id="3_hymi6"]
 [ext_resource type="Script" path="res://maps/FollowCam.gd" id="5_bdext"]
+[ext_resource type="PackedScene" uid="uid://kamkotwvdvp2" path="res://enemies/slime.tscn" id="6_6gons"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0tnx0"]
 texture = ExtResource("1_vxlq8")
@@ -2827,3 +2828,12 @@ position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 script = ExtResource("5_bdext")
 tilemap = NodePath("../../TileMap")
+
+[node name="slime" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("6_6gons")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(208, 72)
+endPoint = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="slime"]
+position = Vector2(-16, 72)
