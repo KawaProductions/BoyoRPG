@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 20
+@export var stats : Resource
 @export var limit = 0.5
 @export var endPoint: Marker2D
 
@@ -23,7 +23,7 @@ func updateVelocity():
 		moveDirection = endPos - position
 	if moveDirection.length() < limit:
 		changeDirection()
-	velocity = moveDirection.normalized() * speed
+	velocity = moveDirection.normalized() * stats.spd
 
 func updateAnimation():
 	if velocity.length() == 0:

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BaseStats" load_steps=2 format=3 uid="uid://nv6vixob565v"]
+
+[ext_resource type="Script" path="res://BaseStats.gd" id="1_ukdqm"]
+
+[resource]
+script = ExtResource("1_ukdqm")
+entity = "Entity"
+max_Hp = 3
+atk = 1
+spd = 20

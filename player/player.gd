@@ -1,14 +1,15 @@
 extends CharacterBody2D
 
 var input_movement = Vector2.ZERO
-@export var speed = 70
+
+@export var stats : Resource
 @onready var animations = $AnimationPlayer
 
 func handleInput():
 	input_movement = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if input_movement != Vector2.ZERO:
-		velocity = input_movement * speed
+		velocity = input_movement * stats.spd
 	else:
 		velocity = Vector2.ZERO
 		
