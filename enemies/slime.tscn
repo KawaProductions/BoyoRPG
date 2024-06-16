@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://kamkotwvdvp2"]
+[gd_scene load_steps=22 format=3 uid="uid://kamkotwvdvp2"]
 
 [ext_resource type="Script" path="res://enemies/slime.gd" id="1_o864j"]
 [ext_resource type="Texture2D" uid="uid://dgdq28lg5f0ck" path="res://enemies/Slime.png" id="1_qchdh"]
@@ -138,6 +138,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_x77ev"]
+radius = 37.0135
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuhqv"]
+size = Vector2(16, 5)
+
 [node name="slime" type="CharacterBody2D"]
 script = ExtResource("1_o864j")
 
@@ -145,3 +151,18 @@ script = ExtResource("1_o864j")
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_pki3e")
 animation = &"walkUp"
+
+[node name="detection_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+visible = false
+shape = SubResource("CircleShape2D_x77ev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_iuhqv")
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

@@ -8,13 +8,19 @@ extends CharacterBody2D
 
 var startPos
 var endPos
+var player_chase = false
+var player: CharacterBody2D = null
 
 func _ready():
 	startPos = position
 	endPos = endPoint.global_position
 
 func updateVelocity():
-	var moveDirection = endPos - position
+	var moveDirection
+	if player_chase:
+		moveDirection = player.position - position
+	else:
+		moveDirection = endPos - position
 	if moveDirection.length() < limit:
 		changeDirection()
 	velocity = moveDirection.normalized() * speed
@@ -40,3 +46,17 @@ func _physics_process(delta):
 	updateVelocity()
 	move_and_slide()
 	updateAnimation()
+
+
+
+
+func _on_detection_area_body_entered(body):
+	player = body
+	player_chase = true
+	print(player_chase)
+
+
+func _on_detection_area_body_exited(body):
+	player = null
+	player_chase = false
+	print(player_chase)
