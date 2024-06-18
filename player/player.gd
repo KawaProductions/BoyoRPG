@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+class_name Player
+
+signal healthChange
+
 var input_movement = Vector2.ZERO
 
 @export var stats : Resource
