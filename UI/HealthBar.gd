@@ -1,11 +1,10 @@
-extends ProgressBar
+extends TextureProgressBar
 
 @export var player : Player
 
-func ready():
-	player.healthChanged.connect(update)
+func _ready():
+	player.hpChange.connect(update)
 	update()
-	
-	
+
 func update():
-	value = player.currentHP * 100 / player.maxHP
+	value = player.current_Hp * 100 / player.stats.max_Hp

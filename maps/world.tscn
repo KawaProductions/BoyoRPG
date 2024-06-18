@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://btu6x1g2e1ouc"]
+[gd_scene load_steps=16 format=3 uid="uid://btu6x1g2e1ouc"]
 
 [ext_resource type="PackedScene" uid="uid://b8y3gph323o0g" path="res://player/player.tscn" id="1_lvixr"]
 [ext_resource type="Texture2D" uid="uid://cp6od1ojc26hm" path="res://maps/TilesetFloor.png" id="1_vxlq8"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://BaseStats.gd" id="5_yl3pw"]
 [ext_resource type="PackedScene" uid="uid://kamkotwvdvp2" path="res://enemies/slime.tscn" id="6_6gons"]
 [ext_resource type="Script" path="res://UI/HealthBar.gd" id="8_golah"]
+[ext_resource type="Texture2D" uid="uid://reftqkaid4c4" path="res://UI/LifeBarUnder.png" id="9_guiqa"]
+[ext_resource type="Texture2D" uid="uid://de77yky827s6m" path="res://UI/LifeBarProgress.png" id="10_wexhi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0tnx0"]
 texture = ExtResource("1_vxlq8")
@@ -2851,10 +2853,13 @@ position = Vector2(-16, 72)
 
 [node name="UIOverlay" type="CanvasLayer" parent="."]
 
-[node name="HealthBar" type="ProgressBar" parent="UIOverlay" node_paths=PackedStringArray("player")]
-offset_right = 126.0
-offset_bottom = 27.0
-step = 1.0
-rounded = true
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UIOverlay" node_paths=PackedStringArray("player")]
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 83.0
+offset_bottom = 13.0
+nine_patch_stretch = true
+texture_under = ExtResource("9_guiqa")
+texture_progress = ExtResource("10_wexhi")
 script = ExtResource("8_golah")
 player = NodePath("../../Player")
