@@ -3,6 +3,10 @@ extends CharacterBody2D
 var input_movement = Vector2.ZERO
 @export var speed = 70
 @onready var animations = $AnimationPlayer
+@onready var weapon = $weapon
+
+var lastAnimDirection: String = "Down"
+var isAttacking: bool = false
 
 func handleInput():
 	input_movement = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -11,8 +15,21 @@ func handleInput():
 		velocity = input_movement * speed
 	else:
 		velocity = Vector2.ZERO
+	
+	if Input.is_action_just_pressed("attack"):
+		attack()
+
+func attack():
+	animations.play("attack" + lastAnimDirection)
+	isAttacking = true
+	weapon.visible = true
+	await animations.animation_finished
+	isAttacking = false
+	weapon.visible = false
 		
 func updateAnimation():
+	if isAttacking: return
+	
 	if velocity.length() == 0:
 		if animations.is_playing():
 			animations.stop()
@@ -29,6 +46,7 @@ func updateAnimation():
 			_:
 				direction="Down"
 		animations.play("move" + direction)
+		lastAnimDirection = direction
 			
 	
 func _physics_process(delta):
