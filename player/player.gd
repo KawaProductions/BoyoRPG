@@ -27,11 +27,11 @@ func updateAnimation():
 	else:
 		var direction = "Down"
 		match [velocity.x, velocity.y]:
-			[var _x, var _y] when _x < 0:
+			[var x, var _y] when x < 0:
 				direction = "Left"
-			[var _x, var _y] when _x > 0:
+			[var x, var _y] when x > 0:
 				direction = "Right"
-			[var _x, var _y] when _y < 0:
+			[var _x, var y] when y < 0:
 				direction = "Up"
 			_:
 				direction="Down"
