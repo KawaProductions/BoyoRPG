@@ -42,7 +42,7 @@ func changeDirection():
 	endPos = startPos
 	startPos = tempEnd
 	
-func _physics_process(_delta):
+func _physics_process(delta):
 	updateVelocity()
 	move_and_slide()
 	updateAnimation()
@@ -55,6 +55,6 @@ func _on_detection_area_body_entered(body):
 	player_chase = true
 
 
-func _on_detection_area_body_exited(_body):
+func _on_detection_area_body_exited(body):
 	player = null
 	player_chase = false
