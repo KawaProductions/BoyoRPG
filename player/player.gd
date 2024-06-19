@@ -4,7 +4,6 @@ class_name Player
 
 signal hpChange
 
-class_name Player
 var input_movement = Vector2.ZERO
 
 @export var stats: Resource
@@ -15,13 +14,6 @@ var input_movement = Vector2.ZERO
 var lastAnimDirection: String = "Down"
 var isAttacking: bool = false
 
-signal hpChange
-
-var input_movement = Vector2.ZERO
-
-@export var stats: Resource
-
-@onready var animations = $AnimationPlayer
 @onready var current_Hp: int = stats.max_Hp
 
 func handleInput():
@@ -38,10 +30,10 @@ func handleInput():
 func attack():
 	animations.play("attack" + lastAnimDirection)
 	isAttacking = true
-	weapon.visible = true
+	weapon.enable()
 	await animations.animation_finished
+	weapon.disable()
 	isAttacking = false
-	weapon.visible = false
 		
 func updateAnimation():
 	if isAttacking: return
@@ -53,15 +45,16 @@ func updateAnimation():
 	else:
 		var direction = "Down"
 		match [velocity.x, velocity.y]:
-			[ var x, var _y]whenx < 0:
+			[ var x, var _y] when x < 0:
 				direction = "Left"
-			[ var x, var _y]whenx > 0:
+			[ var x, var _y] when x > 0:
 				direction = "Right"
-			[ var _x, var y]wheny < 0:
+			[ var _x, var y] when y < 0:
 				direction = "Up"
 			_:
 				direction = "Down"
 		animations.play("move" + direction)
+		lastAnimDirection = direction
 
 func handleCollision():
 	for i in get_slide_collision_count():
@@ -70,11 +63,9 @@ func handleCollision():
 		if (collider.name == "slime"&&current_Hp > 0):
 			current_Hp -= 1
 			hpChange.emit()
-
-func _physics_process(_delta):
-		lastAnimDirection = direction
+		
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	handleInput()
 	move_and_slide()
 	handleCollision()
