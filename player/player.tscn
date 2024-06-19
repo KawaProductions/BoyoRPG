@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8y3gph323o0g"]
+[gd_scene load_steps=11 format=3 uid="uid://b8y3gph323o0g"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_8yic0"]
+[ext_resource type="Resource" uid="uid://clj2jfjme6kf2" path="res://player/basePlayer.tres" id="2_ihtot"]
 [ext_resource type="Texture2D" uid="uid://vm62l85aar1a" path="res://player/SpriteSheet.png" id="2_ux0oc"]
 
 [sub_resource type="Animation" id="Animation_cagxy"]
@@ -142,6 +143,7 @@ size = Vector2(14, 3)
 z_index = 1
 collision_layer = 3
 script = ExtResource("1_8yic0")
+stats = ExtResource("2_ihtot")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseStats" load_steps=2 format=3 uid="uid://clj2jfjme6kf2"]
+
+[ext_resource type="Script" path="res://BaseStats.gd" id="1_5g8l3"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_5g8l3")
+entity = "Player"
+max_Hp = 5
+atk = 1
+spd = 70

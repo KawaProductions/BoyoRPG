@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://btu6x1g2e1ouc"]
+[gd_scene load_steps=14 format=3 uid="uid://btu6x1g2e1ouc"]
 
 [ext_resource type="PackedScene" uid="uid://b8y3gph323o0g" path="res://player/player.tscn" id="1_lvixr"]
 [ext_resource type="Texture2D" uid="uid://cp6od1ojc26hm" path="res://maps/TilesetFloor.png" id="1_vxlq8"]
 [ext_resource type="Texture2D" uid="uid://dg64kmsctnmck" path="res://maps/TilesetNature.png" id="2_r1512"]
 [ext_resource type="Texture2D" uid="uid://by0f17je0b0b8" path="res://maps/AnimatedFlower.png" id="3_hymi6"]
 [ext_resource type="Script" path="res://maps/FollowCam.gd" id="5_bdext"]
+[ext_resource type="Script" path="res://BaseStats.gd" id="5_yl3pw"]
 [ext_resource type="PackedScene" uid="uid://kamkotwvdvp2" path="res://enemies/slime.tscn" id="6_6gons"]
+[ext_resource type="PackedScene" uid="uid://bjm6q8fey28en" path="res://ui_overlay.tscn" id="8_ia86d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0tnx0"]
 texture = ExtResource("1_vxlq8")
@@ -2801,6 +2803,14 @@ sources/0 = SubResource("TileSetAtlasSource_0tnx0")
 sources/1 = SubResource("TileSetAtlasSource_nq3ti")
 sources/2 = SubResource("TileSetAtlasSource_b2mwc")
 
+[sub_resource type="Resource" id="Resource_j7dxc"]
+resource_local_to_scene = true
+script = ExtResource("5_yl3pw")
+entity = "Player"
+max_Hp = 5
+atk = 1
+spd = 70
+
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 
@@ -2819,6 +2829,7 @@ layer_2/tile_data = PackedInt32Array(393219, 1, 0, 524302, 1, 0, 262163, 1, 0, 0
 
 [node name="Player" parent="." instance=ExtResource("1_lvixr")]
 position = Vector2(171, 86)
+stats = SubResource("Resource_j7dxc")
 
 [node name="FollowCam" type="Camera2D" parent="Player" node_paths=PackedStringArray("tilemap")]
 limit_left = 0
@@ -2837,3 +2848,6 @@ endPoint = NodePath("Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="slime"]
 position = Vector2(-16, 72)
+
+[node name="UIOverlay" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ia86d")]
+player = NodePath("../Player")
