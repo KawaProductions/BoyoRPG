@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://eejkx0cqofkl"]
+[gd_scene load_steps=4 format=3 uid="uid://eejkx0cqofkl"]
 
+[ext_resource type="Script" path="res://items/weapons/sword.gd" id="1_dc7k8"]
 [ext_resource type="Texture2D" uid="uid://bukyuai3f3aab" path="res://items/weapons/sword.png" id="1_u7qd1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buc7h"]
 size = Vector2(2, 10)
 
-[node name="Sword" type="Area2D"]
+[node name="sword" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_dc7k8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -5.5)
@@ -14,3 +18,4 @@ texture = ExtResource("1_u7qd1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_buc7h")
+disabled = true

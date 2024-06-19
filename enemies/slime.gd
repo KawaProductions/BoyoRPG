@@ -10,6 +10,7 @@ var startPos
 var endPos
 var player_chase = false
 var player: CharacterBody2D = null
+var isDead: bool = false
 
 func _ready():
 	startPos = position
@@ -43,6 +44,7 @@ func changeDirection():
 	startPos = tempEnd
 	
 func _physics_process(delta):
+	if isDead: return
 	updateVelocity()
 	move_and_slide()
 	updateAnimation()
@@ -58,3 +60,11 @@ func _on_detection_area_body_entered(body):
 func _on_detection_area_body_exited(body):
 	player = null
 	player_chase = false
+
+
+func _on_hurt_box_area_entered(area):
+	animations.play("deathEffect")
+	$CollisionShape2D.set_deferred("disabled", true)
+	isDead = true
+	await animations.animation_finished
+	queue_free()

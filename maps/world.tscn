@@ -2837,3 +2837,10 @@ endPoint = NodePath("Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="slime"]
 position = Vector2(-16, 72)
+
+[node name="slime2" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("6_6gons")]
+position = Vector2(136, 192)
+endPoint = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="slime2"]
+position = Vector2(48, 0)

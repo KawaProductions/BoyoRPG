@@ -8,6 +8,7 @@ var input_movement = Vector2.ZERO
 var lastAnimDirection: String = "Down"
 var isAttacking: bool = false
 
+
 func handleInput():
 	input_movement = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
@@ -22,10 +23,10 @@ func handleInput():
 func attack():
 	animations.play("attack" + lastAnimDirection)
 	isAttacking = true
-	weapon.visible = true
+	weapon.enable()
 	await animations.animation_finished
+	weapon.disable()
 	isAttacking = false
-	weapon.visible = false
 		
 func updateAnimation():
 	if isAttacking: return
