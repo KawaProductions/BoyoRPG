@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b8y3gph323o0g"]
+[gd_scene load_steps=25 format=3 uid="uid://b8y3gph323o0g"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_8yic0"]
 [ext_resource type="Resource" uid="uid://clj2jfjme6kf2" path="res://player/basePlayer.tres" id="2_ihtot"]
@@ -329,6 +329,62 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sqkx"]
 size = Vector2(14, 3)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u2o10"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_st8ho"]
+input_0/name = "Up"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "Left"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "Down"
+input_2/auto_advance = false
+input_2/reset = true
+input_3/name = "Right"
+input_3/auto_advance = false
+input_3/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m1n54"]
+animation = &"moveDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i0tfj"]
+animation = &"moveLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mtnhf"]
+animation = &"moveRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oxr0a"]
+animation = &"moveUp"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_dcoyw"]
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "move"
+input_1/auto_advance = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jtjvt"]
+graph_offset = Vector2(-974.708, 36.6849)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_u2o10")
+nodes/Animation/position = Vector2(-1300, 60)
+nodes/direction/node = SubResource("AnimationNodeTransition_st8ho")
+nodes/direction/position = Vector2(-1120, 260)
+nodes/mDown/node = SubResource("AnimationNodeAnimation_m1n54")
+nodes/mDown/position = Vector2(-1300, 420)
+nodes/mLeft/node = SubResource("AnimationNodeAnimation_i0tfj")
+nodes/mLeft/position = Vector2(-1300, 300)
+nodes/mRight/node = SubResource("AnimationNodeAnimation_mtnhf")
+nodes/mRight/position = Vector2(-1300, 540)
+nodes/mUp/node = SubResource("AnimationNodeAnimation_oxr0a")
+nodes/mUp/position = Vector2(-1300, 180)
+nodes/movement/node = SubResource("AnimationNodeTransition_dcoyw")
+nodes/movement/position = Vector2(-860, 60)
+nodes/output/position = Vector2(-400, 80)
+node_connections = [&"direction", 0, &"mUp", &"direction", 1, &"mLeft", &"direction", 2, &"mDown", &"direction", 3, &"mRight", &"movement", 0, &"Animation", &"movement", 1, &"direction", &"output", 0, &"movement"]
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 3
@@ -359,3 +415,12 @@ region_rect = Rect2(0, 0, 64, 112)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_0sqkx")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_jtjvt")
+parameters/direction/current_state = "up"
+parameters/direction/transition_request = ""
+parameters/direction/current_index = 0
+parameters/movement/current_state = "idle"
+parameters/movement/transition_request = ""
+parameters/movement/current_index = 0
