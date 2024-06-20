@@ -63,7 +63,6 @@ func handleCollision():
 		if (collider.name == "slime"&&current_Hp > 0):
 			current_Hp -= 1
 			hpChange.emit()
-		
 	
 func _physics_process(_delta):
 	handleInput()
