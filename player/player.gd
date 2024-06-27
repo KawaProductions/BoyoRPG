@@ -8,13 +8,16 @@ var input_movement = Vector2.ZERO
 
 @export var stats: Resource
 
-@onready var animations = $AnimationPlayer
+@onready var animations = $AnimationTree
 @onready var weapon = $weapon
 
-var lastAnimDirection: String = "Down"
+var lastAnimDirection: int = 0
 var isAttacking: bool = false
 
 @onready var current_Hp: int = stats.max_Hp
+
+func _ready():
+	animations.active = true
 
 func handleInput():
 	input_movement = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -28,33 +31,32 @@ func handleInput():
 		attack()
 
 func attack():
-	animations.play("attack" + lastAnimDirection)
+	##animations.play("attack" + lastAnimDirection)
 	isAttacking = true
 	weapon.enable()
-	await animations.animation_finished
+	##await animations.animation_finished
 	weapon.disable()
 	isAttacking = false
 		
 func updateAnimation():
-	if isAttacking: return
+	##if isAttacking: return
 	
 	if velocity.length() == 0:
-		if animations.is_playing():
-			animations.stop()
-			animations.seek(0.6, true)
+		animations.set("parameters/movement/current_state", 0)
 	else:
-		var direction = "Down"
+		animations.set("parameters/movement/current_state", 1)
+		var direction = 0
 		match [velocity.x, velocity.y]:
 			[ var x, var _y] when x < 0:
-				direction = "Left"
+				direction = 1
 			[ var x, var _y] when x > 0:
-				direction = "Right"
+				direction = 2
 			[ var _x, var y] when y < 0:
-				direction = "Up"
+				direction = 3
 			_:
-				direction = "Down"
-		animations.play("move" + direction)
-		lastAnimDirection = direction
+				direction = 0
+		animations.set("parameters/direction/current_state", direction)
+		animations.set("parameters/lastDirection/current_state", direction)
 
 func handleCollision():
 	for i in get_slide_collision_count():
