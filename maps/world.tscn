@@ -2791,7 +2791,8 @@ texture = ExtResource("3_hymi6")
 0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_mf8kr"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 1
 terrain_set_0/terrain_0/name = "sand"
 terrain_set_0/terrain_0/color = Color(0.477654, 0.260672, 0.658487, 1)
@@ -2827,34 +2828,35 @@ layer_2/y_sort_enabled = true
 layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(393219, 1, 0, 524302, 1, 0, 262163, 1, 0, 0, 524289, 12, 65536, 524289, 12, 131072, 524289, 12, 196608, 524289, 12, 262144, 524289, 12, 327680, 524289, 12, 393216, 524289, 12, 458752, 524289, 12, 524288, 524289, 12, 589824, 524289, 12, 655360, 524289, 12, 720896, 524289, 12, 786432, 524289, 12, 851968, 524289, 12, 851969, 524289, 12, 851970, 524289, 12, 851971, 524289, 12, 851972, 524289, 12, 851973, 524289, 12, 851974, 524289, 12, 851975, 524289, 12, 851976, 524289, 12, 851977, 524289, 12, 851978, 524289, 12, 851979, 524289, 12, 851980, 524289, 12, 851981, 524289, 12, 851982, 524289, 12, 851983, 524289, 12, 851984, 524289, 12, 851985, 524289, 12, 851986, 524289, 12, 851987, 524289, 12, 851988, 524289, 12, 851989, 524289, 12, 851990, 524289, 12, 22, 524289, 12, 21, 524289, 12, 20, 524289, 12, 19, 524289, 12, 18, 524289, 12, 17, 524289, 12, 16, 524289, 12, 15, 524289, 12, 14, 524289, 12, 13, 524289, 12, 12, 524289, 12, 11, 524289, 12, 10, 524289, 12, 9, 524289, 12, 8, 524289, 12, 7, 524289, 12, 6, 524289, 12, 5, 524289, 12, 4, 524289, 12, 3, 524289, 12, 2, 524289, 12, 1, 524289, 12, 458753, 524289, 12, 589825, 524289, 12, 786439, 524289, 12, 720903, 524289, 12, 655367, 524289, 12, 655368, 524289, 12, 655371, 524289, 12, 655372, 524289, 12, 720908, 524289, 12, 786444, 524289, 12, 458774, 524289, 12, 524310, 524289, 12, 458773, 524289, 12, 524309, 524289, 12, 524308, 524289, 12, 589845, 524289, 12, 65549, 524289, 12, 65550, 524289, 12, 23, 524289, 12, 24, 524289, 12, 25, 524289, 12, 26, 524289, 12, 27, 524289, 12, 28, 524289, 12, 29, 524289, 12, 30, 524289, 12, 65566, 524289, 12, 131102, 524289, 12, 196638, 524289, 12, 262174, 524289, 12, 524318, 524289, 12, 589854, 524289, 12, 655390, 524289, 12, 720926, 524289, 12, 786462, 524289, 12, 851998, 524289, 12, 851997, 524289, 12, 851996, 524289, 12, 851995, 524289, 12, 851994, 524289, 12, 851993, 524289, 12, 851992, 524289, 12, 851991, 524289, 12, 720921, 1, 0, 720923, 1, 0, 655386, 1, 0, 589849, 1, 0, 589851, 1, 0, 31, 524289, 12, 32, 524289, 12, 33, 524289, 12, 34, 524289, 12, 35, 524289, 12, 36, 524289, 12, 37, 524289, 12, 38, 524289, 12, 39, 524289, 12, 40, 524289, 12, 41, 524289, 12, 42, 524289, 12, 43, 524289, 12, 44, 524289, 12, 45, 524289, 12, 46, 524289, 12, 65582, 524289, 12, 131118, 524289, 12, 196654, 524289, 12, 393262, 524289, 12, 458798, 524289, 12, 524334, 524289, 12, 589870, 524289, 12, 655406, 524289, 12, 720942, 524289, 12, 786478, 524289, 12, 852014, 524289, 12, 262190, 524289, 12, 327726, 524289, 12, 852013, 524289, 12, 852012, 524289, 12, 852011, 524289, 12, 852010, 524289, 12, 852009, 524289, 12, 852008, 524289, 12, 852007, 524289, 12, 852006, 524289, 12, 852005, 524289, 12, 852004, 524289, 12, 852003, 524289, 12, 852002, 524289, 12, 852001, 524289, 12, 852000, 524289, 12, 851999, 524289, 12)
 
-[node name="Player" parent="." instance=ExtResource("1_lvixr")]
+[node name="Player" parent="TileMap" instance=ExtResource("1_lvixr")]
 position = Vector2(171, 86)
 stats = SubResource("Resource_j7dxc")
 
-[node name="FollowCam" type="Camera2D" parent="Player" node_paths=PackedStringArray("tilemap")]
+[node name="FollowCam" type="Camera2D" parent="TileMap/Player" node_paths=PackedStringArray("tilemap")]
 limit_left = 0
 limit_top = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 script = ExtResource("5_bdext")
-tilemap = NodePath("../../TileMap")
+tilemap = NodePath("../..")
 
-[node name="slime" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("6_6gons")]
+[node name="slime2" parent="TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("6_6gons")]
+z_index = 1
+position = Vector2(136, 192)
+endPoint = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="TileMap/slime2"]
+position = Vector2(48, 0)
+
+[node name="slime" parent="TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("6_6gons")]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(208, 72)
 endPoint = NodePath("Marker2D")
 
-[node name="Marker2D" type="Marker2D" parent="slime"]
+[node name="Marker2D" type="Marker2D" parent="TileMap/slime"]
 position = Vector2(-16, 72)
 
 [node name="UIOverlay" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_ia86d")]
-player = NodePath("../Player")
-
-[node name="slime2" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("6_6gons")]
-position = Vector2(136, 192)
-endPoint = NodePath("Marker2D")
-
-[node name="Marker2D" type="Marker2D" parent="slime2"]
-position = Vector2(48, 0)
+player = NodePath("../TileMap/Player")

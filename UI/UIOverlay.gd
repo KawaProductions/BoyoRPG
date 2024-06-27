@@ -8,4 +8,4 @@ func _ready():
 	update()
 
 func update():
-	healthBar.value = player.current_Hp * 100 / player.stats.max_Hp
+	healthBar.value = player.currentHealth * 100 / player.stats.max_Hp

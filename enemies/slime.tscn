@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://kamkotwvdvp2"]
+[gd_scene load_steps=32 format=3 uid="uid://kamkotwvdvp2"]
 
 [ext_resource type="Script" path="res://enemies/slime.gd" id="1_o864j"]
 [ext_resource type="Texture2D" uid="uid://dgdq28lg5f0ck" path="res://enemies/Slime.png" id="1_qchdh"]
@@ -194,10 +194,16 @@ radius = 37.0135
 size = Vector2(16, 5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i0dwq"]
-radius = 7.0
+radius = 5.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0cc8"]
+radius = 5.0
 height = 18.0
 
 [node name="slime" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_o864j")
 stats = ExtResource("2_kiprm")
@@ -208,8 +214,8 @@ sprite_frames = SubResource("SpriteFrames_pki3e")
 animation = &"walkDown"
 
 [node name="detection_area" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 visible = false
@@ -224,9 +230,18 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
-position = Vector2(0, -7)
+position = Vector2(0, -5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_i0dwq")
+
+[node name="hitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(0, -5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_d0cc8")
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

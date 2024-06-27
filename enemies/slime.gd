@@ -56,9 +56,17 @@ func _on_detection_area_body_exited(_body):
 	player = null
 	player_chase = false
 
-func _on_hurt_box_area_entered(_area):
+func _on_hurt_box_area_entered(area):
+	if area.get_parent() == self:
+		return
 	animations.play("deathEffect")
-	$CollisionShape2D.set_deferred("disabled", true)
+	disableCollisions()
 	isDead = true
 	await animations.animation_finished
 	queue_free()
+
+
+func disableCollisions():
+	$CollisionShape2D.set_deferred("disabled", true)
+	$hitBox.set_deferred("monitorable", false)
+	$hitBox.set_deferred("monitoring", false)

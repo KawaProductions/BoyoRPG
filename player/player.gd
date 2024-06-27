@@ -7,6 +7,7 @@ signal hpChange
 var input_movement = Vector2.ZERO
 
 @export var stats: Resource
+@export var knockbackPower: int = 1000
 
 @onready var animations = $AnimationTree
 @onready var weapon = $weapon
@@ -14,7 +15,7 @@ var input_movement = Vector2.ZERO
 var lastAnimDirection: int = 0
 var isAttacking: bool = false
 
-@onready var current_Hp: int = stats.max_Hp
+@onready var currentHealth: int = stats.max_Hp
 
 func _ready():
 	animations.active = true
@@ -52,17 +53,23 @@ func updateAnimation():
 		animations["parameters/Idle/blend_position"] = direction
 		animations["parameters/Move/blend_position"] = direction
 		animations["parameters/Attack/blend_position"] = direction
-
-func handleCollision():
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		if (collider.name == "slime"&&current_Hp > 0):
-			current_Hp -= 1
-			hpChange.emit()
 	
 func _physics_process(_delta):
 	handleInput()
 	move_and_slide()
-	handleCollision()
 	updateAnimation()
+
+
+func _on_hurt_box_area_entered(area:Area2D):
+	if area.name == "hitBox":
+		currentHealth -= 1
+		if currentHealth < 0:
+			currentHealth = stats.max_Hp
+		hpChange.emit()
+		print_debug(currentHealth)
+		knockback(area.get_parent().velocity)
+
+func knockback(enemyVelocity: Vector2):
+	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+	velocity = knockbackDirection
+	move_and_slide()
