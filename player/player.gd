@@ -42,9 +42,11 @@ func updateAnimation():
 	##if isAttacking: return
 	
 	if velocity.length() == 0:
-		animations.set("parameters/movement/current_state", 0)
+		animations["parameters/conditions/isIdle"] = true
+		animations["parameters/conditions/isMoving"] = false
 	else:
-		animations.set("parameters/movement/current_state", 1)
+		animations["parameters/conditions/isIdle"] = false
+		animations["parameters/conditions/isMoving"] = true
 		var direction = 0
 		match [velocity.x, velocity.y]:
 			[ var x, var _y] when x < 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b8y3gph323o0g"]
+[gd_scene load_steps=44 format=3 uid="uid://b8y3gph323o0g"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_8yic0"]
 [ext_resource type="Resource" uid="uid://clj2jfjme6kf2" path="res://player/basePlayer.tres" id="2_ihtot"]
@@ -405,11 +405,74 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sqkx"]
 size = Vector2(14, 3)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e2xk3"]
+animation = &"attackDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fuvqa"]
+animation = &"attackUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jot2q"]
+animation = &"attackLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fcl2c"]
+animation = &"attackRight"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_rby2h"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_e2xk3")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_fuvqa")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_jot2q")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_fcl2c")
+blend_point_3/pos = Vector2(1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dvvj6"]
+animation = &"idleDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dlssn"]
+animation = &"idleUp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0eokv"]
+animation = &"idleLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i8qpd"]
+animation = &"idleRight"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_aborm"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_dvvj6")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_dlssn")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_0eokv")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_i8qpd")
+blend_point_3/pos = Vector2(1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6g04o"]
+animation = &"moveDown"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tr1qx"]
+animation = &"moveLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1gjm3"]
+animation = &"moveRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kbs6g"]
+animation = &"moveUp"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_rf7ig"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_6g04o")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_tr1qx")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_1gjm3")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_kbs6g")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_buln1"]
 advance_mode = 2
@@ -494,5 +557,5 @@ parameters/conditions/isIdle = false
 parameters/conditions/isMoving = false
 parameters/conditions/isSwinging = false
 parameters/Attack/blend_position = Vector2(0, 0)
-parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0.00270033, 0.00440526)
 parameters/Move/blend_position = Vector2(0, 0)
