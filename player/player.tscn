@@ -492,7 +492,7 @@ advance_condition = &"isMoving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7uv3b"]
 advance_mode = 2
-advance_condition = &"isSwinging"
+advance_condition = &"isAttacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_26nfc"]
 switch_mode = 2
@@ -501,7 +501,7 @@ advance_condition = &"isIdle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0orgj"]
 advance_mode = 2
-advance_condition = &"isSwinging"
+advance_condition = &"isAttacking"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j87il"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_rby2h")
@@ -553,9 +553,9 @@ process_thread_messages = 0
 reset_on_save = false
 tree_root = SubResource("AnimationNodeStateMachine_j87il")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/isAttacking = false
 parameters/conditions/isIdle = false
 parameters/conditions/isMoving = false
-parameters/conditions/isSwinging = false
 parameters/Attack/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(0.00270033, 0.00440526)
 parameters/Move/blend_position = Vector2(0, 0)

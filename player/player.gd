@@ -31,15 +31,14 @@ func handleInput():
 		attack()
 
 func attack():
-	##animations.play("attack" + lastAnimDirection)
-	isAttacking = true
+	animations["parameters/conditions/isAttacking"] = true
 	weapon.enable()
-	##await animations.animation_finished
+	await animations.animation_finished
 	weapon.disable()
-	isAttacking = false
+	animations["parameters/conditions/isAttacking"] = false
 		
 func updateAnimation():
-	##if isAttacking: return
+	if isAttacking: return
 	
 	if velocity.length() == 0:
 		animations["parameters/conditions/isIdle"] = true
@@ -47,18 +46,12 @@ func updateAnimation():
 	else:
 		animations["parameters/conditions/isIdle"] = false
 		animations["parameters/conditions/isMoving"] = true
-		var direction = 0
-		match [velocity.x, velocity.y]:
-			[ var x, var _y] when x < 0:
-				direction = 1
-			[ var x, var _y] when x > 0:
-				direction = 2
-			[ var _x, var y] when y < 0:
-				direction = 3
-			_:
-				direction = 0
-		animations.set("parameters/direction/current_state", direction)
-		animations.set("parameters/lastDirection/current_state", direction)
+		
+		var direction = velocity.normalized()
+		
+		animations["parameters/Idle/blend_position"] = direction
+		animations["parameters/Move/blend_position"] = direction
+		animations["parameters/Attack/blend_position"] = direction
 
 func handleCollision():
 	for i in get_slide_collision_count():
