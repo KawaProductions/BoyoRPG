@@ -403,7 +403,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sqkx"]
-size = Vector2(14, 3)
+size = Vector2(12, 3)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e2xk3"]
 animation = &"attackDown"
@@ -515,13 +515,13 @@ states/Start/position = Vector2(149, 134)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_buln1"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_da5gj"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_k6svf"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_adixg"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_7uv3b"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_26nfc"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0orgj")]
 graph_offset = Vector2(-162, 17)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1yjqd"]
-radius = 7.0
-height = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnsil"]
+size = Vector2(12, 15)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 9
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_8yic0")
 stats = ExtResource("2_ihtot")
@@ -569,7 +569,8 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_1yjqd")
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_pnsil")
 
 [connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="hurtBox" to="." method="_on_hurt_box_area_exited"]
