@@ -43,14 +43,14 @@ func attack():
 func updateAnimation():
 	if isAttacking: return
 	
-	if velocity.length() == 0:
+	if input_movement.length() == 0:
 		animations["parameters/conditions/isIdle"] = true
 		animations["parameters/conditions/isMoving"] = false
 	else:
 		animations["parameters/conditions/isIdle"] = false
 		animations["parameters/conditions/isMoving"] = true
 		
-		var direction = velocity.normalized()
+		var direction = input_movement.normalized()
 		
 		animations["parameters/Idle/blend_position"] = direction
 		animations["parameters/Move/blend_position"] = direction
