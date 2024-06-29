@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b8y3gph323o0g"]
+[gd_scene load_steps=45 format=3 uid="uid://b8y3gph323o0g"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_8yic0"]
 [ext_resource type="Resource" uid="uid://clj2jfjme6kf2" path="res://player/basePlayer.tres" id="2_ihtot"]
@@ -403,7 +403,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sqkx"]
-size = Vector2(14, 3)
+size = Vector2(12, 3)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e2xk3"]
 animation = &"attackDown"
@@ -515,9 +515,13 @@ states/Start/position = Vector2(149, 134)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_buln1"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_da5gj"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_k6svf"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_adixg"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_7uv3b"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_26nfc"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_0orgj")]
 graph_offset = Vector2(-162, 17)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnsil"]
+size = Vector2(12, 15)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
-collision_layer = 3
+collision_layer = 9
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_8yic0")
 stats = ExtResource("2_ihtot")
@@ -559,3 +563,14 @@ parameters/conditions/isMoving = false
 parameters/Attack/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(0.00270033, 0.00440526)
 parameters/Move/blend_position = Vector2(0, 0)
+
+[node name="hurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_pnsil")
+
+[connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="hurtBox" to="." method="_on_hurt_box_area_exited"]
