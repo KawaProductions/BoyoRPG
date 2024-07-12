@@ -57,7 +57,7 @@ func _on_detection_area_body_exited(_body):
 	player_chase = false
 
 func _on_hurt_box_area_entered(area):
-	if area.get_parent() == self:
+	if area.get_parent().is_in_group("enemy"):
 		return
 	animations.play("deathEffect")
 	disableCollisions()
