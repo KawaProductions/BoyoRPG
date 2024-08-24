@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://by0f17je0b0b8" path="res://maps/AnimatedFlower.png" id="3_hymi6"]
 [ext_resource type="Script" path="res://maps/FollowCam.gd" id="5_bdext"]
 [ext_resource type="Script" path="res://BaseStats.gd" id="5_yl3pw"]
-[ext_resource type="PackedScene" uid="uid://kamkotwvdvp2" path="res://enemies/slime.tscn" id="6_6gons"]
+[ext_resource type="PackedScene" uid="uid://kamkotwvdvp2" path="res://enemies/slime/slime.tscn" id="6_6gons"]
 [ext_resource type="PackedScene" uid="uid://bjm6q8fey28en" path="res://ui_overlay.tscn" id="8_ia86d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0tnx0"]

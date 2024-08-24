@@ -1,8 +1,8 @@
 [gd_scene load_steps=32 format=3 uid="uid://kamkotwvdvp2"]
 
-[ext_resource type="Script" path="res://enemies/slime.gd" id="1_o864j"]
-[ext_resource type="Texture2D" uid="uid://dgdq28lg5f0ck" path="res://enemies/Slime.png" id="1_qchdh"]
-[ext_resource type="Resource" uid="uid://nv6vixob565v" path="res://enemies/slime.tres" id="2_kiprm"]
+[ext_resource type="Script" path="res://enemies/slime/slime.gd" id="1_o864j"]
+[ext_resource type="Texture2D" uid="uid://dgdq28lg5f0ck" path="res://enemies/slime/Slime.png" id="1_qchdh"]
+[ext_resource type="Resource" uid="uid://nv6vixob565v" path="res://enemies/slime/slime.tres" id="2_kiprm"]
 [ext_resource type="Texture2D" uid="uid://7h6ns25tqo1e" path="res://enemies/deathEffect.png" id="3_hi3w3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dfqk8"]

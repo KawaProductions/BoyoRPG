@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgdq28lg5f0ck"
-path="res://.godot/imported/Slime.png-d4bf994dc6d99172677dbbf2a2019c9d.ctex"
+uid="uid://rp8k2y4bskih"
+path="res://.godot/imported/Flam.png-402dd176dcb6f0a7c9e752caf3246577.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/Slime.png"
-dest_files=["res://.godot/imported/Slime.png-d4bf994dc6d99172677dbbf2a2019c9d.ctex"]
+source_file="res://enemies/flam/Flam.png"
+dest_files=["res://.godot/imported/Flam.png-402dd176dcb6f0a7c9e752caf3246577.ctex"]
 
 [params]
 
